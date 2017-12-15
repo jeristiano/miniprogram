@@ -1,0 +1,5 @@
+<!--pages/home/home.wxml-->
+<view>
+<swiper>轮播图区域</swiper>
+<view>主内容显示区域</view>
+</view>
