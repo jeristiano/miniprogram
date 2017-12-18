@@ -1,5 +1,33 @@
 <!--pages/home/home.wxml-->
+<import src="../tpls/products/products-tpl.wxml"/>
 <view>
-<swiper>轮播图区域</swiper>
-<view>主内容显示区域</view>
+  <swiper indicator-dots="true" autoplay='true' class="swiper">
+    <block wx:for="{{bannerData}}">
+      <swiper-item class="banner-item">
+        <image mode="aspectFill" class="item-image" src="{{item.img.url}}">
+        </image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class='home-main'>
+    <view class="home-main-theme">
+      <view class='home-main-header'>精选主题</view>
+      <view class='theme-box'>
+        <block wx:for="{{themeData}}">
+          <view wx:if="{{index==2}}" class="theme-item big">
+            <image src="{{item.topic_img.url}}"></image>
+          </view>
+          <view wx:else class="theme-item">
+            <image src="{{item.topic_img.url}}"></image>
+          </view>
+        </block>
+      </view>
+    </view>
+    
+    <view class='home-main-products'>
+    <view class="home-main-header">最近新品</view>
+    <template is="products" data="{{products:productsData}}"></template>
+    </view>
+  </view>
 </view>
