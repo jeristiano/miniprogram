@@ -29,6 +29,12 @@ class Base {
     })
   }
 
+  //绑定事件获得绑定数据
+  getDataSet(event,key){
+    return event.currentTarget.dataset[key];
+
+  }
+
 
 }
 export { Base }
