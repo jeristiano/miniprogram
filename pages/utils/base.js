@@ -21,6 +21,7 @@ class Base {
         // if(params.sCallBack){
         //   params.sCallBack(res);
         // }
+      //  console.log(res);
         params.sCallBack && params.sCallBack(res.data);//请求成功回调执行函数
       },
       fail: function (err) {
