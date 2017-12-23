@@ -5,7 +5,7 @@
     "pages/theme/theme"
   ],
   "window": {
-    "navigationBarTitleText": "小程序",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "#FFFFFF",
     "navigationBarBackgroundColor": "#AB956D",
     "backgroundColor": "#FFFFFF",

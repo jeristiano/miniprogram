@@ -29,6 +29,11 @@ Page({
       })
     });
   },
+  onReady: function () {
+    wx.setNavigationBarTitle({
+      title: this.data.name
+    })
+  },
   //商品绑定事件
   onProductsItemTap: function (event) {
     var id = theme.getDataSet(event, 'id');
