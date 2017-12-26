@@ -9,11 +9,40 @@
   <image mode="aspectFill" src="{{product.main_img_url}}"></image>
   </view>
   <view class='cart-box'>
-  <view class='product-counts'></view>
-  <view class='middle-border'></view>
-  <view class='add-cart-btn'></view>
+  <view class='product-counts'>
+    <picker class="{{products.stock==0?'disabled':''}}" range="{{countsArray}}" bindchange='bindPickerChange' value='0'>
+      <view>
+      <text class="counts-tip">数量</text>
+      <text class="counts-data">{{productCount}}</text>
+      <image class='counts-icon' src="../../imgs/icon/arrow@down.png"></image>
+      </view>
+    </picker>
   </view>
-  <view class='basic-info-box'></view>
+  <view class='middle-border'></view>
+  <view class="add-cart-btn {{products.stock==0?'disabled':''}}">
+  <text>加入购物车</text>
+  <image class='cart-icon' src='../../imgs/icon/cart.png'></image>
+  </view>
+  </view>
+  <view class='basic-info-box'>
+    <view class="stock" wx:if="{{product.stock>0}}">有货</view>
+    <view class='stock_no' wx:else>缺货</view>
+    <view class='name'>{{product.name}}</view>
+    <view class='price'>${{product.price}}</view>
+  </view>
 </view>
-<view class="detail-bottom-box"></view>
+<view class="detail-bottom-box">
+<view class='tabs-box'>
+<block wx:for="{{['商品介绍','商品参数','售后保障']}}">
+<view class="tabs-item {{currentTabIndex!=index?'':'selected'}}" bindtap='bindTabItem' data-id="{{index}}">
+{{item}}
+</view>
+</block>
+</view>
+<view class='product-detail-box'>
+<view hidden="{{currentTabIndex!==0}}"></view>
+<view hidden="{{currentTabIndex!==1}}">商品参数</view>
+<view hidden="{{currentTabIndex!==2}}">售后保障</view>
+</view>
+</view>
 </view>
