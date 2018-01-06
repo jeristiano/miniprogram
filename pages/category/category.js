@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    currentMenuIndex: 0
   },
 
   /**
@@ -24,19 +24,54 @@ Page({
       });
       //一定在回调里在进行分类获取,才能保证到可以接收到分类数据
       var id = categoryData[0].id;
-      var imgUrl = categoryData[0].img.url; 
+      var imgUrl = categoryData[0].img.url;
       var title = categoryData[0].name;
-      category.getProductsByCategory(id,(data)=>{
-        console.log(data)
+      category.getProductsByCategory(id, (data) => {
         var dataObj = {
           products: data,
-          topImgUrl:imgUrl,
-          title:title
+          topImgUrl: imgUrl,
+          title: title
         };
         this.setData({
           categoryProducts: dataObj
         })
       })
     });
+  },
+  //点击一级分类
+  OnCategoryTap: function (event) {
+    var id = category.getDataSet(event, 'id');
+    var index = category.getDataSet(event, 'index');
+    this.setData({
+      currentMenuIndex: index
+    });
+
+    category.getProductsByCategory(id,(data=>{
+     var iii= this.getDataObjForBind(index, data);
+     console.log(iii)
+      this.setData(
+       this.getDataObjForBind(index, data)
+      );
+    }))
+  },
+
+//返回对象
+  getDataObjForBind:function(index,data){
+    var obj = {},
+      arr = [0, 1, 2, 3, 4, 5],
+    baseData = this.data.categoryTypeArr[index];
+    for (var item in arr){
+      if(item == arr[index]){
+        obj['categoryProducts'] = {
+          products: data,
+          topImgUrl: baseData.img.url,
+          title: baseData.name
+        };
+        return obj;
+      }
+    }
   }
+
+
+
 })

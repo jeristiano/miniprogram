@@ -1,14 +1,14 @@
- <import src="../tpls/category/category-tpl.wxml"/>
+<import src="../tpls/category/category-tpl.wxml" />
 <view class="container category-container">
   <view class='category-box'>
     <view class='left-box'>
-    <block wx:for="{{categoryTypeArr}}">
-      <view class="menu-item">{{item.name}}</view>
-    </block>
+      <block wx:for="{{categoryTypeArr}}" >
+        <view data-index="{{index}}" data-id="{{item.id}}" bindtap="OnCategoryTap" class="menu-item {{currentMenuIndex==index?'selected':''}}" >{{item.name}}</view>
+      </block>
     </view>
     <view class='right-box'>
       <view class='foods-type-box'>
-      <template is='categorydetail' data="{{categoryInfo:categoryProducts}}"></template>
+        <template is='categorydetail' data="{{categoryInfo:categoryProducts}}"></template>
       </view>
     </view>
   </view>
