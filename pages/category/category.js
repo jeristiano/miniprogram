@@ -46,22 +46,20 @@ Page({
       currentMenuIndex: index
     });
 
-    category.getProductsByCategory(id,(data=>{
-     var iii= this.getDataObjForBind(index, data);
-     console.log(iii)
+    category.getProductsByCategory(id, (data => {
       this.setData(
-       this.getDataObjForBind(index, data)
+        this.getDataObjForBind(index, data)
       );
     }))
   },
 
-//返回对象
-  getDataObjForBind:function(index,data){
+  //返回对象
+  getDataObjForBind: function (index, data) {
     var obj = {},
       arr = [0, 1, 2, 3, 4, 5],
-    baseData = this.data.categoryTypeArr[index];
-    for (var item in arr){
-      if(item == arr[index]){
+      baseData = this.data.categoryTypeArr[index];
+    for (var item in arr) {
+      if (item == arr[index]) {
         obj['categoryProducts'] = {
           products: data,
           topImgUrl: baseData.img.url,
@@ -70,6 +68,14 @@ Page({
         return obj;
       }
     }
+  },
+
+  //点击商品跳转到详情页面
+  onProductsItemTap: function (event) {
+  var id = category.getDataSet(event, 'id');
+  wx.navigateTo({
+    url: '../product/product?id=' + id,
+  });
   }
 
 
